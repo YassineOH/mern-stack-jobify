@@ -17,11 +17,11 @@ const register = async (req, res, next) => {
     }
     const verificationToken = crypto.randomBytes(40).toString("hex")
 
-    const protocol = req.protocol
-    const host = req.get("x-forwarded-host")
-    // console.log({ protocol, host })
+    // const protocol = req.protocol
+    // const host = req.get("x-forwarded-host")
+    // // console.log({ protocol, host })
 
-    const origin = `${protocol}://${host}`
+    const origin = `https://jobify-mern-course-udemy.herokuapp.com`
     const user = await User.create({ ...req.body, verificationToken })
 
     await sendVerificationEmail({
@@ -145,9 +145,10 @@ const forgerPassword = async (req, res) => {
     if (user) {
         const passwordToken = crypto.randomBytes(70).toString("hex")
 
-        const protocol = req.protocol
-        const host = req.get("x-forwarded-host")
-        const origin = `${protocol}://${host}`
+        // const protocol = req.protocol
+        // const host = req.get("x-forwarded-host")
+
+        const origin = `https://jobify-mern-course-udemy.herokuapp.com`
 
         sendResetPasswordEmail({
             name: user.name,
